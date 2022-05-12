@@ -1,3 +1,8 @@
+# About
+This is a test project that show-cases how to use `refine` with `nhost`.
+
+Change the `backendUrl` in the `lib/nhost.js` file to suit your own nhost server.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -118,13 +118,6 @@ function App() {
             notificationProvider={notificationProvider}
             catchAll={<ErrorComponent />}
             resources={[
-              // {
-              //   name: 'posts',
-              //   list: PostList,
-              //   create: PostCreate,
-              //   edit: PostEdit,
-              //   show: PostShow,
-              // },
               {
                 name: 'tenants',
                 list: TenantsList,
@@ -138,25 +131,27 @@ function App() {
                 edit: CategoriesEdit,
               },
             ]}
+            reactQueryClientConfig={{
+              defaultOptions: {
+                mutations: {
+                  retry: (retryCount, error) => {
+                    if (error.statusCode === 200) {
+                      return false;
+                    }
+                    return true;
+                  },
+                },
+                queries: {
+                  retry: (retryCount, error) => {
+                    if (error.statusCode === 200) {
+                      return false;
+                    }
+                    return true;
+                  },
+                },
+              },
+            }}
           />
-          {/* <BrowserRouter>
-            <Routes>
-              <Route path="sign-up" element={<SignUp />} />
-              <Route path="sign-in" element={<SignIn />} />
-              <Route path="reset-password" element={<ResetPassword />} />
-              <Route
-                path="/"
-                element={
-                  <ProtectedRoute>
-                    <Layout />
-                  </ProtectedRoute>
-                }
-              >
-                <Route index element={<Dashboard />} />
-                <Route path="profile" element={<Profile />} />
-              </Route>
-            </Routes>
-          </BrowserRouter> */}
         </NhostApolloProvider>
       </NhostReactProvider>
 
