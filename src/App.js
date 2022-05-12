@@ -57,7 +57,7 @@ const authProvider = {
     if (error.status === 401) {
       return nhost.auth.refreshSession();
     }
-    return Promise.reject();
+    return Promise.resolve();
   },
   checkAuth: async () => {
     const isAuthenticated = await nhost.auth.isAuthenticatedAsync();
